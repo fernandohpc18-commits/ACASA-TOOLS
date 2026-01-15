@@ -1,0 +1,11 @@
+{
+  "data": "datetime",
+  "ativo": "string",
+  "tipo": "compra | venda",
+  "quantidade": "number",
+  "preco_entrada": "number",
+  "preco_saida": "number",
+  "resultado": "number",
+  "resultado_percentual": "number",
+  "plataforma": "string"
+}
