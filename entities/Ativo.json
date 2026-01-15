@@ -1,7 +1,9 @@
 {
   "simbolo": "string",
   "nome": "string",
-  "tipo": "acao | crypto | forex | commodity",
+  "tipo": "acao | etf | moeda | commodity | crypto",
   "exchange": "string",
-  "moeda": "string"
+  "setor": "string",
+  "pais": "string",
+  "ativo": "boolean"
 }
