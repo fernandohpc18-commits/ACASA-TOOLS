@@ -3,22 +3,22 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recha
 import { Calculator, ShieldCheck, TrendingUp } from "lucide-react";
 
 export default function InvestmentSimulator() {
-  [cite_start]const [perfil, setPerfil] = useState('Moderado'); [cite: 89]
-  [cite_start]const [capital, setCapital] = useState(10000); [cite: 89]
+  const [perfil, setPerfil] = useState('Moderado');
+  const [capital, setCapital] = useState(10000);
 
   const alocacaoData = {
-    [cite_start]Conservador: [ [cite: 91]
+    Conservador: [
       { name: 'Renda Fixa', value: 80, color: '#3B82F6' },
       { name: 'FIIs', value: 15, color: '#F59E0B' },
       { name: 'Ações BR', value: 5, color: '#10B981' }
     ],
-    [cite_start]Moderado: [ [cite: 91]
+    Moderado: [
       { name: 'Renda Fixa', value: 50, color: '#3B82F6' },
       { name: 'Ações BR', value: 25, color: '#10B981' },
       { name: 'Ações Inter', value: 15, color: '#8B5CF6' },
       { name: 'FIIs', value: 10, color: '#F59E0B' }
     ],
-    [cite_start]Agressivo: [ [cite: 91]
+    Agressivo: [
       { name: 'Ações BR', value: 30, color: '#10B981' },
       { name: 'Ações Inter', value: 30, color: '#8B5CF6' },
       { name: 'Crypto', value: 20, color: '#EF4444' },
@@ -28,9 +28,9 @@ export default function InvestmentSimulator() {
   };
 
   return (
-    <div className="space-y-6 p-4">
+    <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
+        <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm">
           <div className="flex items-center gap-2 mb-4 text-sm font-bold">
             <Calculator size={16} /> Configurar Perfil
           </div>
@@ -50,8 +50,8 @@ export default function InvestmentSimulator() {
                 <button 
                   key={p}
                   onClick={() => setPerfil(p)}
-                  className={`px-3 py-2 rounded-lg text-sm transition-all ${
-                    perfil === p ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+                  className={`px-3 py-2 rounded-xl text-sm transition-all ${
+                    perfil === p ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
                   }`}
                 >
                   {p}
@@ -61,9 +61,9 @@ export default function InvestmentSimulator() {
           </div>
         </div>
 
-        <div className="md:col-span-2 p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
-          <div className="flex items-center gap-2 mb-4 text-sm font-bold">
-            [cite_start]<ShieldCheck size={16} className="text-green-500" /> Composição Otimizada [cite: 91]
+        <div className="md:col-span-2 p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm">
+          <div className="flex items-center gap-2 mb-4 text-sm font-bold text-green-500">
+            <ShieldCheck size={16} /> Composição Otimizada
           </div>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -87,12 +87,12 @@ export default function InvestmentSimulator() {
         </div>
       </div>
       
-      <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
-        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-          [cite_start]<TrendingUp className="text-blue-600" size={20} /> Projeção de Patrimônio (5 anos) [cite: 92]
+      <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800">
+        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <TrendingUp className="text-blue-600" size={24} /> Projeção de Patrimônio (5 anos)
         </h3>
-        <div className="h-48 bg-slate-50 dark:bg-slate-950 rounded-xl flex items-center justify-center border border-dashed border-slate-200 dark:border-slate-800 text-slate-400">
-           [cite_start]Gráfico de Projeção Linear - Perfil {perfil} ativo [cite: 99]
+        <div className="h-48 bg-slate-50 dark:bg-slate-950 rounded-2xl flex items-center justify-center border border-dashed border-slate-200 dark:border-slate-800 text-slate-400">
+           Gráfico de Projeção Linear - Perfil {perfil} Ativo
         </div>
       </div>
     </div>
