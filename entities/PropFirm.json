@@ -1,0 +1,13 @@
+{
+  "empresa": "string",
+  "anos_atividade": "number",
+  "usuarios_redes_sociais": {
+    "facebook": "number",
+    "youtube": "number",
+    "instagram": "number"
+  },
+  "maxima_alocacao": "number",
+  "score_medio": "number",
+  "status": "Ativa | Inativa | Em Análise",
+  "promocao_ativa": "boolean"
+}
