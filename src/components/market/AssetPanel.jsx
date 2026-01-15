@@ -12,10 +12,11 @@ export default function AssetPanel({ symbol }) {
         const quotes = await MarketDataService.fetchQuotes([symbol]);
         const rsiSimulado = Math.random() * 100;
         const scenario = MarketDataService.analyzeScenario(quotes[0].price, rsiSimulado);
+        
         setData(quotes[0]);
         setAnalysis(scenario);
-      } catch (error) {
-        console.error("Erro no carregamento:", error);
+      } catch (e) {
+        console.error("Erro ao carregar dados", e);
       }
     }
     load();
@@ -40,6 +41,7 @@ export default function AssetPanel({ symbol }) {
           {analysis.cenario.toUpperCase()}
         </span>
       </div>
+      <p className="text-xs text-slate-500 italic">Motivo: {analysis.motivo}</p>
     </div>
   );
 }
