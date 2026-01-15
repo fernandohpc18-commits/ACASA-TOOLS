@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import { Calculator, ShieldCheck, TrendingUp } from "lucide-react";
 
 export default function InvestmentSimulator() {
   const [perfil, setPerfil] = useState('Moderado');
   const [capital, setCapital] = useState(10000);
 
-  // Alocação por categoria conforme Seção 5.1 do script
+  // Alocação por categoria conforme o script técnico [cite: 91, 103]
   const alocacaoData = {
     Conservador: [
       { name: 'Renda Fixa', value: 80, color: '#3B82F6' },
@@ -32,13 +31,12 @@ export default function InvestmentSimulator() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="md:col-span-1">
-          <CardHeader>
-            <CardTitle className="text-sm flex items-center gap-2">
-              <Calculator size={16} /> Configurar Perfil
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        {/* Painel de Configuração */}
+        <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
+          <div className="flex items-center gap-2 mb-4 text-sm font-bold">
+            <Calculator size={16} /> Configurar Perfil [cite: 89]
+          </div>
+          <div className="space-y-4">
             <div>
               <label className="text-xs text-slate-500">Capital Inicial (R$)</label>
               <input 
@@ -49,27 +47,28 @@ export default function InvestmentSimulator() {
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-xs text-slate-500">Perfil de Risco</label>
+              <label className="text-xs text-slate-500">Perfil de Risco [cite: 91]</label>
               {['Conservador', 'Moderado', 'Agressivo'].map(p => (
                 <button 
                   key={p}
                   onClick={() => setPerfil(p)}
-                  className={`px-3 py-2 rounded-lg text-sm transition-all ${perfil === p ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}
+                  className={`px-3 py-2 rounded-lg text-sm transition-all ${
+                    perfil === p ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
+                  }`}
                 >
                   {p}
                 </button>
               ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card className="md:col-span-2">
-          <CardHeader>
-            <CardTitle className="text-sm flex items-center gap-2">
-              <ShieldCheck size={16} className="text-green-500" /> Composição Otimizada
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="h-64">
+        {/* Gráfico de Composição */}
+        <div className="md:col-span-2 p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm">
+          <div className="flex items-center gap-2 mb-4 text-sm font-bold">
+            <ShieldCheck size={16} className="text-green-500" /> Composição Otimizada [cite: 92, 100]
+          </div>
+          <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -87,18 +86,18 @@ export default function InvestmentSimulator() {
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
       
+      {/* Projeção */}
       <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
         <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-          <TrendingUp className="text-blue-600" size={20} /> Projeção de Patrimônio (5 anos)
+          <TrendingUp className="text-blue-600" size={20} /> Projeção de Patrimônio (5 anos) [cite: 99, 104]
         </h3>
-        <p className="text-xs text-slate-500 mb-6">Cálculo baseado em cenários Otimista e Realista para o perfil {perfil}.</p>
-        {/* Aqui entraria o ProjectionChart.jsx descrito na Seção 5.2 */}
-        <div className="h-48 bg-slate-50 dark:bg-slate-950 rounded-xl flex items-center justify-center border border-dashed border-slate-200 dark:border-slate-800">
-           Gráfico de Projeção Linear - Perfil {perfil}
+        <p className="text-xs text-slate-500 mb-6">Cálculo baseado em cenários Otimista e Realista para o perfil {perfil}. [cite: 92]</p>
+        <div className="h-48 bg-slate-50 dark:bg-slate-950 rounded-xl flex items-center justify-center border border-dashed border-slate-200 dark:border-slate-800 text-slate-400">
+           Gráfico de Projeção Linear - Perfil {perfil} ativo [cite: 104]
         </div>
       </div>
     </div>
