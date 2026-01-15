@@ -1,0 +1,9 @@
+{
+  "nome": "string",
+  "tipo_alerta": "perda_diaria | drawdown_excedido | trades_consecutivos | ativo_volume | ativo_perda | meta_lucro",
+  "valor_gatilho": "number",
+  "ativo_especifico": "string",
+  "notificar_email": "boolean",
+  "ativo": "boolean",
+  "disparado": "boolean"
+}
