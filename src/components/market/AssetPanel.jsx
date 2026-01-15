@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MarketDataService } from './MarketDataService';
-import { TrendingUp, TrendingDown, Minus } from "lucide-react"; [cite: 2, 78]
+import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 
 export default function AssetPanel({ symbol }) {
   const [data, setData] = useState(null);
@@ -8,17 +8,20 @@ export default function AssetPanel({ symbol }) {
 
   useEffect(() => {
     async function load() {
-      const quotes = await MarketDataService.fetchQuotes([symbol]); [cite: 53]
-      const rsiSimulado = Math.random() * 100;
-      const scenario = MarketDataService.analyzeScenario(quotes[0].price, rsiSimulado); [cite: 62]
-      
-      setData(quotes[0]);
-      setAnalysis(scenario);
+      try {
+        const quotes = await MarketDataService.fetchQuotes([symbol]);
+        const rsiSimulado = Math.random() * 100;
+        const scenario = MarketDataService.analyzeScenario(quotes[0].price, rsiSimulado);
+        setData(quotes[0]);
+        setAnalysis(scenario);
+      } catch (error) {
+        console.error("Erro no carregamento:", error);
+      }
     }
     load();
   }, [symbol]);
 
-  if (!data) return <div className="animate-pulse h-24 bg-slate-200 rounded-xl"></div>;
+  if (!data || !analysis) return <div className="animate-pulse h-24 bg-slate-200 dark:bg-slate-800 rounded-xl"></div>;
 
   return (
     <div className="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm">
@@ -37,7 +40,6 @@ export default function AssetPanel({ symbol }) {
           {analysis.cenario.toUpperCase()}
         </span>
       </div>
-      <p className="text-xs text-slate-500 italic">Motivo: {analysis.motivo}</p> [cite: 63]
     </div>
   );
 }
