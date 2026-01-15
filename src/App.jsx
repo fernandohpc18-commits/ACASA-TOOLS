@@ -1,135 +1,178 @@
 import React, { useState } from 'react';
 import { 
-  TrendingUp, BarChart3, LayoutDashboard, Wallet, 
-  Settings, Shield, Bell, Moon, Sun, Search, Menu
+  LayoutDashboard, TrendingUp, BarChart3, Wallet, 
+  Settings, Shield, Bell, Moon, Sun, Search, 
+  Users, Layers, ArrowRightLeft, Radio, FileText
 } from "lucide-react";
 import { Toaster } from 'sonner';
 
-// Importação dos componentes core
+// Importação dos seus componentes especializados
 import AdvancedCharts from './components/trades/AdvancedCharts';
 import TradeForecasting from './components/trades/TradeForecasting';
 import AssetPanel from './components/market/AssetPanel';
 import InvestmentSimulator from './components/investment/InvestmentSimulator';
+import DocumentacaoCompleta from './components/DOCUMENTACAO_COMPLETA';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('trades');
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const sampleTrades = [
-    { id: 1, ativo: 'BTCUSD', resultado: 450, data: '2026-01-10' },
-    { id: 2, ativo: 'AAPL', resultado: -120, data: '2026-01-12' },
-    { id: 3, ativo: 'EURUSD', resultado: 300, data: '2026-01-14' }
+  // Menu de Navegação conforme as imagens
+  const navItems = [
+    { id: 'dashboard', label: 'Dashboard PropFirms', icon: LayoutDashboard },
+    { id: 'market', label: 'Análise de Mercado', icon: BarChart3 },
+    { id: 'wallet', label: 'Simulador de Investimentos', icon: Wallet },
+    { id: 'trades', label: 'Monitor de Trades', icon: TrendingUp },
+    { id: 'compare', label: 'Comparar Firms', icon: ArrowRightLeft },
+    { id: 'alerts', label: 'Alertas Personalizados', icon: Bell },
+    { id: 'docs', label: 'Documentação Técnica', icon: FileText },
   ];
 
   return (
-    <div className={`${isDarkMode ? 'dark' : ''} selection:bg-blue-500/30`}>
-      <div className="flex h-screen bg-[#F8FAFC] dark:bg-[#020617] text-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-500">
+    <div className={isDarkMode ? 'dark' : ''}>
+      <div className="flex h-screen bg-[#F0F2F5] dark:bg-[#020617] text-slate-900 dark:text-slate-100 transition-colors duration-300">
         
-        {/* Sidebar Minimalista */}
-        <aside className="hidden lg:flex w-72 flex-col bg-white dark:bg-[#0B1120] border-r border-slate-200 dark:border-slate-800/50">
-          <div className="p-8 flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-500/20">
-              <Shield className="text-white w-6 h-6" />
+        {/* SIDEBAR PROFISSIONAL */}
+        <aside className="w-64 bg-white dark:bg-[#0B1120] border-r border-slate-200 dark:border-slate-800 flex flex-col shadow-xl">
+          <div className="p-6 border-b border-slate-100 dark:border-slate-800">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-500/30">
+                <Shield className="text-white w-6 h-6" />
+              </div>
+              <div>
+                <h1 className="font-bold text-lg leading-none">PropFirm Monitor</h1>
+                <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">Análise de Mercado</p>
+              </div>
             </div>
-            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400">
-              ACASA TOOLS
-            </span>
           </div>
-
-          <nav className="flex-1 px-4 space-y-1.5">
-            {[
-              { id: 'trades', label: 'Monitor de Trades', icon: TrendingUp },
-              { id: 'market', label: 'Mercado em Tempo Real', icon: BarChart3 },
-              { id: 'propfirms', label: 'PropFirms Hub', icon: LayoutDashboard },
-              { id: 'wallet', label: 'Estratégia & Simulação', icon: Wallet },
-            ].map((item) => (
+          
+          <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+            <p className="px-3 text-[10px] font-bold text-slate-400 uppercase mb-2 tracking-widest">Navegação</p>
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   activeTab === item.id 
-                    ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 shadow-sm border border-blue-100 dark:border-blue-500/20' 
-                    : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' 
+                    : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600'
                 }`}
               >
-                <item.icon className="w-4.5 h-4.5" />
+                <item.icon className="w-4 h-4" />
                 {item.label}
               </button>
             ))}
           </nav>
 
-          <div className="p-6 border-t border-slate-100 dark:border-slate-800/50">
-             <button 
+          <div className="p-4 border-t border-slate-100 dark:border-slate-800">
+            <button 
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-500 transition-colors w-full"
+              className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold"
             >
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              <div className="flex items-center gap-2">
+                {isDarkMode ? <Sun size={14} /> : <Moon size={14} />}
+                <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+              </div>
+              <div className={`w-8 h-4 rounded-full transition-colors ${isDarkMode ? 'bg-blue-500' : 'bg-slate-300'}`}></div>
             </button>
           </div>
         </aside>
 
-        {/* Área de Conteúdo Principal */}
+        {/* ÁREA DE CONTEÚDO PRINCIPAL */}
         <div className="flex-1 flex flex-col overflow-hidden">
           
-          {/* Header Superior Limpo */}
-          <header className="h-20 bg-white/80 dark:bg-[#0B1120]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/50 flex items-center justify-between px-8 z-10">
-            <div className="flex items-center gap-4 bg-slate-100 dark:bg-slate-900/50 px-4 py-2 rounded-full border border-slate-200 dark:border-slate-800 w-96">
-              <Search className="w-4 h-4 text-slate-400" />
-              <input type="text" placeholder="Buscar ativos ou métricas..." className="bg-transparent border-none outline-none text-xs w-full" />
+          {/* TOPBAR */}
+          <header className="h-16 bg-white dark:bg-[#0B1120] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shadow-sm">
+            <div className="flex items-center gap-4 text-slate-400">
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-300">{activeTab.toUpperCase()}</span>
             </div>
-            
             <div className="flex items-center gap-4">
-              <div className="relative">
-                <Bell className="w-5 h-5 text-slate-400 cursor-pointer hover:text-blue-500" />
-                <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+              <div className="bg-slate-100 dark:bg-slate-800 p-2 rounded-full relative">
+                <Bell size={18} className="text-slate-500" />
+                <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
               </div>
-              <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-[10px] font-bold text-white">
-                FH
-              </div>
+              <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600"></div>
             </div>
           </header>
 
           <main className="flex-1 overflow-y-auto p-8 custom-scrollbar">
-            {/* Seção Hero Informativa */}
-            <div className="mb-10">
-              <h2 className="text-4xl font-extrabold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-br from-slate-900 to-slate-500 dark:from-white dark:to-slate-500">
-                {activeTab === 'trades' && "Visão Geral de Trading"}
-                {activeTab === 'market' && "Market Intelligence"}
-                {activeTab === 'propfirms' && "Proprietary Trading Hub"}
-                {activeTab === 'wallet' && "Investment Architect"}
-              </h2>
-              <p className="text-slate-500 dark:text-slate-400 font-medium">
-                {activeTab === 'trades' ? "Análise preditiva baseada em IA e histórico detalhado." : "Monitoramento institucional em tempo real."}
-              </p>
-            </div>
-
-            {/* Conteúdo Dinâmico */}
-            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-700">
-              {activeTab === 'trades' && (
-                <>
-                  <TradeForecasting />
-                  <div className="bg-white dark:bg-[#0B1120] p-6 rounded-3xl border border-slate-200 dark:border-slate-800/50 shadow-sm">
-                    <AdvancedCharts trades={sampleTrades} initialBalance={10000} />
+            
+            {/* RENDERIZAÇÃO DINÂMICA DE MÓDULOS */}
+            <div className="max-w-7xl mx-auto space-y-6">
+              
+              {/* ABA: DASHBOARD PROPFIRMS */}
+              {activeTab === 'dashboard' && (
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <StatCard label="Total de PropFirms" value="153" icon={Layers} color="bg-blue-500" />
+                    <StatCard label="Score Médio" value="3.2" icon={Radio} color="bg-orange-500" />
+                    <StatCard label="Total de Avaliações" value="261.219" icon={TrendingUp} color="bg-emerald-500" />
+                    <StatCard label="Máx. Alocação" value="$10.0M" icon={Shield} color="bg-purple-500" />
                   </div>
-                </>
-              )}
-
-              {activeTab === 'market' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                  <AssetPanel symbol="BTCUSD" />
-                  <AssetPanel symbol="ETHUSD" />
-                  <AssetPanel symbol="AAPL" />
-                  <AssetPanel symbol="XAUUSD" />
+                  <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                      <LayoutDashboard className="text-blue-600" size={20} />
+                      Filtros Avançados
+                    </h3>
+                    <div className="h-40 border-2 border-dashed rounded-2xl flex items-center justify-center text-slate-400">
+                      Interface de Tabela de PropFirms conforme Imagem [cite: 324, 340]
+                    </div>
+                  </div>
                 </div>
               )}
 
+              {/* ABA: MONITOR DE TRADES */}
+              {activeTab === 'trades' && (
+                <div className="space-y-6 animate-in fade-in duration-500">
+                  <TradeForecasting />
+                  <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <AdvancedCharts trades={sampleTrades} initialBalance={10000} />
+                  </div>
+                </div>
+              )}
+
+              {/* ABA: ANÁLISE DE MERCADO */}
+              {activeTab === 'market' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <AssetPanel symbol="PETR4.SA" />
+                  <AssetPanel symbol="VALE3.SA" />
+                  <AssetPanel symbol="ITUB4.SA" />
+                  <AssetPanel symbol="BBDC4.SA" />
+                </div>
+              )}
+
+              {/* ABA: SIMULADOR DE INVESTIMENTOS */}
               {activeTab === 'wallet' && <InvestmentSimulator />}
+
+              {/* ABA: DOCUMENTAÇÃO */}
+              {activeTab === 'docs' && <DocumentacaoCompleta />}
+
             </div>
           </main>
         </div>
       </div>
-      <Toaster position="bottom-right" theme={isDarkMode ? 'dark' : 'light'} expand={false} richColors />
+      <Toaster position="bottom-right" richColors />
     </div>
   );
 }
+
+// Componente Interno de Cards de Estatística (Estilo Imagem 31)
+function StatCard({ label, value, icon: Icon, color }) {
+  return (
+    <div className="bg-white dark:bg-slate-900 p-5 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center justify-between transition-transform hover:scale-[1.02] cursor-default">
+      <div>
+        <p className="text-xs font-bold text-slate-400 uppercase mb-1">{label}</p>
+        <p className="text-2xl font-black">{value}</p>
+      </div>
+      <div className={`${color} p-3 rounded-2xl text-white shadow-lg`}>
+        <Icon size={24} />
+      </div>
+    </div>
+  );
+}
+
+const sampleTrades = [
+  { id: 1, ativo: 'BTCUSD', resultado: 450, data: '2026-01-10' },
+  { id: 2, ativo: 'PETR4', resultado: -120, data: '2026-01-12' },
+  { id: 3, ativo: 'GOLD', resultado: 850, data: '2026-01-14' }
+];
