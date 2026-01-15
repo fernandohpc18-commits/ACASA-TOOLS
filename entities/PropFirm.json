@@ -1,13 +1,17 @@
 {
   "empresa": "string",
   "anos_atividade": "number",
-  "usuarios_redes_sociais": {
+  "usuarios_redes": {
     "facebook": "number",
     "youtube": "number",
-    "instagram": "number"
+    "instagram": "number",
+    "discord": "number",
+    "twitter": "number"
   },
   "maxima_alocacao": "number",
   "score_medio": "number",
   "status": "Ativa | Inativa | Em Análise",
-  "promocao_ativa": "boolean"
+  "promocao_ativa": "boolean",
+  "website": "string",
+  "logo_url": "string"
 }
