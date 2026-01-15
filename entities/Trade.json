@@ -7,5 +7,6 @@
   "preco_saida": "number",
   "resultado": "number",
   "resultado_percentual": "number",
-  "plataforma": "string"
+  "plataforma": "string",
+  "notas": "string"
 }
