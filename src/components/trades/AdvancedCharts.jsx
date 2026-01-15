@@ -7,8 +7,7 @@ export default function AdvancedCharts({ trades, initialBalance }) {
     resultado: trade.resultado,
     impacto: ((trade.resultado / initialBalance) * 100).toFixed(2),
     fill: trade.resultado >= 0 ? '#10B981' : '#EF4444'
-  })); [cite: 22, 23]
-
+  }));
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="p-4 bg-white dark:bg-slate-800 rounded-xl shadow">
