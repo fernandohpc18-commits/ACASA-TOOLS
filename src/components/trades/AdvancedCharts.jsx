@@ -5,9 +5,10 @@ export default function AdvancedCharts({ trades, initialBalance }) {
   const operationsData = trades.map((trade, idx) => ({
     index: idx + 1,
     resultado: trade.resultado,
-    impacto: ((trade.resultado / initialBalance) * 100).toFixed(2),
+    impacto: ((trade.resultado / initialBalance) * 10).toFixed(2),
     fill: trade.resultado >= 0 ? '#10B981' : '#EF4444'
   }));
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="p-4 bg-white dark:bg-slate-800 rounded-xl shadow">
