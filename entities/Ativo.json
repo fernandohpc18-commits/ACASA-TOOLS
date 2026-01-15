@@ -1,0 +1,7 @@
+{
+  "simbolo": "string",
+  "nome": "string",
+  "tipo": "acao | crypto | forex | commodity",
+  "exchange": "string",
+  "moeda": "string"
+}
