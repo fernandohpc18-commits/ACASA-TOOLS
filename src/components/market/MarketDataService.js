@@ -21,7 +21,6 @@ export const MarketDataService = {
       low: 180.10
     }));
 
-    cache.set(cacheKey, { data: mockData, timestamp: Date.now() }); [cite: 131]
     return mockData;
   },
 
