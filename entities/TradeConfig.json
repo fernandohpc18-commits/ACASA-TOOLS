@@ -1,0 +1,6 @@
+{
+  "limite_perda_geral": "number",
+  "limite_perda_diaria": "number",
+  "limite_drawdown": "number",
+  "saldo_inicial": "number"
+}
