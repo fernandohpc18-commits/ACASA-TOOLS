@@ -8,15 +8,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Cores institucionais baseadas nas imagens
-        primary: "#2563EB",
-        dark: {
-          bg: "#020617",
-          card: "#0B1120"
-        }
-      },
-      borderRadius: {
-        '3xl': '1.5rem',
+        darkBg: "#020617",
+        lightBg: "#F0F2F5"
       }
     },
   },
