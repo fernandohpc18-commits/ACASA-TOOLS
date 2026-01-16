@@ -8,9 +8,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Cores institucionais extraídas das imagens
+        brandBlue: "#2563EB",
         darkBg: "#020617",
-        lightBg: "#F0F2F5"
-      }
+        darkCard: "#0B1120"
+      },
     },
   },
   plugins: [],
