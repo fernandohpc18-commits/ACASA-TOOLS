@@ -4,15 +4,14 @@
 
 @layer base {
   body {
-    @apply bg-[#0F172A] text-slate-100 antialiased font-sans;
+    @apply bg-[#F0F2F5] text-slate-900 dark:bg-[#020617] dark:text-slate-100 antialiased font-sans transition-colors duration-300;
   }
 }
 
-/* Estilização dos Cards para parecerem flutuantes como na imagem */
-.glass-card {
-  @apply bg-[#1E293B] border border-slate-700/50 rounded-[24px] shadow-xl backdrop-blur-sm;
+/* Scrollbar personalizada para o estilo moderno das imagens */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
 }
-
-.sidebar-item-active {
-  @apply bg-blue-600 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)];
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
 }
