@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-[#F0F2F5] text-slate-900 dark:bg-[#020617] dark:text-slate-100 antialiased font-sans transition-colors duration-300;
-  }
+:root {
+  background-color: #F0F2F5; /* Cor clara profissional */
 }
 
-/* Scrollbar personalizada para o estilo moderno das imagens */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+.dark {
+  background-color: #020617; /* Fundo azul profundo das imagens */
 }
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: inherit;
 }
