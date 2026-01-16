@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 :root {
-  background-color: #F0F2F5; /* Cor clara profissional */
+  background-color: #F0F2F5; /* Cor para modo claro */
 }
 
-.dark {
-  background-color: #020617; /* Fundo azul profundo das imagens */
+/* Força o fundo escuro das imagens no modo dark */
+.dark, [data-theme='dark'] {
+  background-color: #020617 !important;
 }
 
 body {
